@@ -5,7 +5,8 @@
 var PicJam = angular.module('PicJam', [
   'ui.router',
   'primus',
-  'appControllers'
+  'appControllers',
+  'appDirectives'
 ]);
 
 PicJam.config(function($stateProvider, $urlRouterProvider, $locationProvider, primusProvider) {
