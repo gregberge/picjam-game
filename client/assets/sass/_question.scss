@@ -3,6 +3,7 @@
 
 pj-question {
   display: block;
+  position: relative;
 
   img {
     width: 100%;
@@ -12,6 +13,24 @@ pj-question {
     &.blur {
       -webkit-filter: blur(30px);
       filter: blur(30px);
+    }
+  }
+
+  .answer {
+    font-size: 20px;
+    z-index: 2;
+    position: absolute;
+    bottom: 30px;
+    text-align: center;
+    font-size: 30px;
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    transition: none;
+    opacity: 0;
+
+    &.visible {
+      opacity: 1;
+      transition: opacity 0.2s ease;
     }
   }
 }

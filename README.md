@@ -166,8 +166,8 @@ Emitted when a user answer correctly to the question.
 
 ```js
 {
-  questionId: '...',
-  userId: '...',
+  question: {...},
+  user: {...},
   rank: 1,
   points: 3
 }

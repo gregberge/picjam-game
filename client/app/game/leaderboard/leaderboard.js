@@ -11,11 +11,7 @@
       scope: {
         users: '='
       },
-      templateUrl: '/app/game/leaderboard/leaderboard.html',
-      controllerAs: 'leaderboard',
-      controller: function () {
-
-      }
+      templateUrl: '/app/game/leaderboard/leaderboard.html'
     };
   });
 
