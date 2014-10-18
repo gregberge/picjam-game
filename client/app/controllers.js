@@ -39,12 +39,6 @@ appControllers.controller('RootCtrl', function($scope, primus) {
 		$scope.messages.push({text: user.username + ' left game', type: 'info'});
 	});
 
-	primus.$on('game.start', function (obj) {
-		console.log('game.start', obj);
-		$scope.countdown = obj.time;
-		$scope.tip = 'Game will start in '+ $scope.countdown + 'seconds';
-	});
-
 	primus.$on('game.end', function (obj) {
 		console.log('game.end', obj);
 	});
