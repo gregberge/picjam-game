@@ -24,7 +24,12 @@
   },
   "homepage": "https://github.com/fhacktory/picjam-game",
   "dependencies": {
-    "express": "^4.9.8"
+    "bluebird": "^2.3.6",
+    "express": "^4.9.8",
+    "lodash": "^2.4.1",
+    "primus": "^2.4.9",
+    "primus-emitter": "^3.0.3",
+    "ws": "^0.4.32"
   },
   "devDependencies": {
     "grunt-contrib-sass": "^0.8.1",
