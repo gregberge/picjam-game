@@ -1,0 +1,11 @@
+{
+  "name": "picjam-game",
+  "version": "1.0.0",
+  "homepage": "https://github.com/fhacktory/picjam-game",
+  "private": true,
+  "authors": [
+    "Greg Bergé <neoziro@gmail.com>"
+  ],
+  "description": "PicJam game realised during FHacktory 2014.",
+  "license": "MIT"
+}
