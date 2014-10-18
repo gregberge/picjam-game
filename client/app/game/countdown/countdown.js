@@ -13,14 +13,17 @@
         timer: '='
       },
       controller: function ($scope, $interval) {
+        var promise;
+
         $scope.$watch('timer', function init() {
           $scope.time = Math.round($scope.timer / 1000);
-        });
 
-        $interval(function () {
-          if ($scope.time)
-            $scope.time--;
-        }, 1000);
+          if (promise) $interval.cancel(promise);
+          promise = $interval(function () {
+            if ($scope.time)
+              $scope.time--;
+          }, 1000);
+        });
       }
     };
   });
