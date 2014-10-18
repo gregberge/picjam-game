@@ -1,0 +1,12 @@
+.interactive{
+	background: green;
+	height: 600px;
+	width: 500px;
+	float: right;
+	position: relative;
+
+	.main-input{
+		position: absolute;
+		bottom: 0;
+	}
+}

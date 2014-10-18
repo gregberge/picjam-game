@@ -4,7 +4,9 @@
 
 var appControllers = angular.module('appControllers', []);
 
-appControllers.controller('RootCtrl', function(primus) {
+appControllers.controller('RootCtrl', function($scope, primus) {
+	$scope.messages = [];
+console.log('hello');
 	primus.id(function (id) {
 		console.log('ID', id);
 	});
@@ -23,14 +25,18 @@ appControllers.controller('RootCtrl', function(primus) {
 
 	primus.$on('chat', function (obj) {
 		console.log('chat', obj);
+		$scope.messages.push(obj);
 	});
 
 	primus.$on('game.join', function (obj) {
 		console.log('game.join', obj);
+		$scope.messages.push({text: obj.user.username + ' joined game', type: 'info'});
 	});
 
 	primus.$on('game.leave', function (obj) {
 		console.log('game.leave', obj);
+		var user = _.find(obj.game.users, {id: obj.user.id});
+		$scope.messages.push({text: user.username + ' left game', type: 'info'});
 	});
 
 	primus.$on('game.start', function (obj) {
@@ -58,7 +64,9 @@ appControllers.controller('RootCtrl', function(primus) {
 	});
 
 	this.submit = function () {
-		primus.send('question.answer', {text: this.answer});
-		this.answer = '';
+		//primus.send('question.answer', {text: this.answer});
+		//this.answer = '';
+		primus.send('chat', {text: $scope.text});
+		$scope.text = '';
 	};
 });
