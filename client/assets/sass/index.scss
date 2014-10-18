@@ -1,3 +1,9 @@
+@import '/bower_components/bootstrap/dist/css/bootstrap.css';
+
 body{
-	background: green;
+	padding: 20px;
 }
+
+@import 'controls';
+@import 'display';
+@import 'interactive';
