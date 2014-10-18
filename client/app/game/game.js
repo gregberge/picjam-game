@@ -7,7 +7,7 @@
   angular.module('picjam.game', [
     'picjam.game.leaderboard',
     'picjam.game.countdown',
-    'picjam.game.advert',
+    'picjam.game.tips',
     'picjam.game.chat',
     'picjam.game.question'
   ])
@@ -48,7 +48,11 @@
       var user = new User(msg.user);
 
       // Set me to true.
-      if (msg.me) user.me = true;
+      if (msg.me) {
+        game.me = user;
+        user.me = true;
+                console.log('game.me', game.me);
+      }
 
       // Add user if it doesn't already exist.
       if (!_.find(game.users, {id: msg.user.id}))

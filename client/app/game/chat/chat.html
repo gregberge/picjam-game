@@ -1,1 +1,13 @@
-CHAT
+<div class="interactive main-chat">
+	<ul class="messages">
+		<li class="{{message.type}}" ng-repeat="message in messages">
+			<span ng-if="message.type != 'info' && !message.me">{{message.user.username}} says: </span>
+			<span ng-if="message.type != 'info' && message.me && !message.playing">You say: </span>
+			<span ng-if="message.type != 'info' && message.me && message.playing">Your answer: </span>
+			{{message.text}}
+		</li>
+	</ul>
+	<form ng-submit="chat.submit()">
+		<input class="form-control main-input" ng-model="text" type="text" placeholder="Type your answer"/>
+	</form>
+</div>
