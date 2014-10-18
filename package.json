@@ -25,5 +25,10 @@
   "homepage": "https://github.com/fhacktory/picjam-game",
   "dependencies": {
     "express": "^4.9.8"
+  },
+  "devDependencies": {
+    "grunt-contrib-sass": "^0.8.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-develop": "^0.4.0"
   }
 }
