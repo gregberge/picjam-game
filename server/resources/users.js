@@ -21,7 +21,7 @@ exports.create = function (user) {
   });
 
   // Notify io.
-  io.emit('users.create', user);
+  io.send('users.create', user);
 
   // Log.
   logger.log('users.create', user);
@@ -47,7 +47,7 @@ exports.update = function (id, data) {
   _.extend(user, data);
 
   // Notify io.
-  io.emit('users.update', user);
+  io.send('users.update', user);
 
   // Log.
   logger.log('users.update', user);
@@ -72,7 +72,7 @@ exports.destroy = function (id) {
   _.remove(users, user);
 
   // Notify io.
-  io.emit('users.destroy', user);
+  io.send('users.destroy', user);
 
   // Log.
   logger.log('users.destroy', user);
