@@ -180,12 +180,8 @@ Emitted when the question is finished.
 ```js
 {
   time: 10,
-  ranks: [
-    {
-      userId: 'xxx',
-      score: 'xxx',
-      rank: 1
-    }
-  ]
+  scores: {
+    'userIdxxx': 10
+  }
 }
 ```

@@ -1,0 +1,13 @@
+<h1>Pic Jam</h1>
+<!-- <h2>Game #{{game.id}}</h2> -->
+<div class="game row" ng-class="[game.status]">
+  <div class="col-md-4">
+    <pj-countdown timer="game.timer"></pj-countdown>
+    <pj-question></pj-question>
+    <pj-leaderboard users="game.users"></pj-leaderboard>
+  </div>
+  <div class="col-md-8">
+    <pj-advert></pj-advert>
+    <pj-chat></pj-chat>
+  </div>
+</div>
