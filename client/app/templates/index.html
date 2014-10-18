@@ -7,7 +7,9 @@
 	</div>
 </div>
 <div class="interactive main-chat">
-	<div class="tips"></div>
+	<div class="tips">
+		{{tip}}
+	</div>
 	<ul class="messages">
 		<li class="{{message.type}}" ng-repeat="message in messages">{{message.text}}</li>
 	</ul>
