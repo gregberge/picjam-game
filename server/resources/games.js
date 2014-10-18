@@ -1,8 +1,7 @@
 var Promise = require('bluebird');
 var _ = require('lodash');
-var uuid = require('node-uuid');
 var logger = require('../logger');
-var config = require('../config');
+var Game = require('../models/game');
 var io = require('../io');
 var games = {};
 
@@ -28,18 +27,20 @@ exports.find = function (id) {
  */
 
 exports.addUser = function (user) {
-  // Get avalaible game.
-  var game = getAvailableGame();
+  return new Promise(function (resolve, reject) {
+    // Get avalaible game.
+    var game = getAvailableGame();
 
-  // Add user in the game.
-  game.users.push(user);
+    // Join the io game.
+    io.join([user.id], game.id, function (err) {
+      if (err) return reject(err);
 
-  // Join the io game.
-  io.join([user.id], game.id);
+      // Add user in the game.
+      game.addUser(user);
 
-  logger.log('Add user "%s" to game "%s"', user.id, game.id);
-
-  return Promise.resolve(game);
+      resolve(game);
+    });
+  });
 };
 
 /**
@@ -50,7 +51,7 @@ exports.addUser = function (user) {
 
 function getAvailableGame() {
   var game = _.find(games, function (game) {
-    return game.users.length < config.userPerRoom;
+    return game.isAvailable();
   });
 
   // If there is no game, create one.
@@ -70,10 +71,7 @@ function getAvailableGame() {
 
 function create() {
   // Create game.
-  var game = {
-    id: uuid.v4(),
-    users: []
-  };
+  var game = new Game();
 
   // Add game to the game list.
   games[game.id] = game;

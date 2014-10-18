@@ -66,7 +66,8 @@ Emitted when you or a user join the game.
   user: {
     id: '...',
     username: '...'
-  }
+  },
+  me: true
 }
 ```
 
@@ -81,8 +82,7 @@ Emitted when a user leave the game.
     users: [{...}, {...}]
   },
   user: {
-    id: '...',
-    username: '...'
+    id: '...'
   }
 }
 ```
