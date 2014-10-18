@@ -19,8 +19,7 @@ PicJam.config(function($stateProvider, $urlRouterProvider, $locationProvider, pr
     .state('root', {
       url: '/',
       templateUrl: '/app/templates/index.html',
-      controller: 'RootCtrl',
-      controllerAs: 'root'
+      controller: 'RootCtrl as root'
     });
 
   primusProvider.setEndpoint('/');
