@@ -25,7 +25,7 @@ appDirectives.directive('countDown', function($interval, $rootScope) {
 	  		if(scope.time <= 0){
 	  			scope.time = 0;
 	  			$interval.cancel(timer);
-	  			scope.$parent.$parent.gameStarts = false;
+	  			scope.$parent.$parent.gameStatus = 'starts';
 	  		}
 	  	}
 	  },
@@ -39,11 +39,22 @@ appDirectives.directive('interactive', function($interval, primus, $rootScope) {
 	  templateUrl: '/app/templates/interactive.html',
 	  scope: true,
       link: function(scope, elt, attrs){
-      	scope.gameStarts = false;
+      	scope.gameStatus = 'stopped';
 
       	primus.$on('game.start', function (obj) {
+      		console.log('obj.time', obj.time);
 			scope.countdown = obj.time;
-			scope.gameStarts = true;
+			scope.gameStatus = 'starting';
+		});
+
+		primus.$on('question.end', function (obj) {
+			scope.countdown = obj.time;
+			scope.gameStatus = 'questionEnd';
+		});
+
+		primus.$on('game.end', function (obj) {
+			scope.countdown = obj.time;
+			scope.gameStatus = 'ended';
 		});
       },
       replace: true
