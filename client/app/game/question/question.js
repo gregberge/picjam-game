@@ -5,14 +5,33 @@
    */
 
   angular.module('picjam.game.question', [])
-  .directive('pjQuestion', function () {
+  .directive('pjQuestion', function ($timeout) {
     return {
       restrict: 'E',
-      scope: {},
+      scope: {
+        question: '=',
+        timer: '='
+      },
       templateUrl: '/app/game/question/question.html',
       controllerAs: 'question',
-      controller: function () {
+      link: function (scope, element) {
+        var img = element.find('img');
 
+        scope.$watch('question', function (question) {
+          if (!question) {
+            img.removeClass('blur');
+            img.css('transition', 'none');
+            return ;
+          }
+
+          img.addClass('blur');
+
+          // Wait render.
+          $timeout(function () {
+            img.css('transition', 'all ' + question.time + 'ms ease');
+            img.removeClass('blur');
+          });
+        });
       }
     };
   });

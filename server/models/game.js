@@ -102,13 +102,17 @@ Game.prototype.start = function () {
 
 Game.prototype.startQuestion = function () {
   // Create question.
-  this.currentQuestion = new Question();
+  this.currentQuestion = new Question({
+    imageUrl: '/assets/img/yoda.jpg',
+    answers: ['yoda'],
+    answer: 'Yoda'
+  });
 
   // Add questions to the game.
   this.questions.push(this.currentQuestion);
 
   // Broadcast "question.start".
-  this.broadcast('question.start', this.currentQuestion);
+  this.broadcast('question.start', _.omit(this.currentQuestion.toJSON(), 'answer'));
 
   logger.log('Start question', this.currentQuestion.toJSON());
 
@@ -121,14 +125,15 @@ Game.prototype.startQuestion = function () {
  */
 
 Game.prototype.endQuestion = function () {
-  // Set currentQuestion to null.
-  this.currentQuestion = null;
-
   // Broadcast "question.end".
   this.broadcast('question.end', {
+    question: this.currentQuestion,
     time: config.game.timeBetweenQuestions,
     scores: this.scores
   });
+
+  // Set currentQuestion to null.
+  this.currentQuestion = null;
 
   logger.log('End question');
 

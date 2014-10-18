@@ -3,7 +3,15 @@
 
 pj-question {
   display: block;
+
   img {
     width: 100%;
+    -webkit-filter: blur(0);
+    filter: blur(0);
+
+    &.blur {
+      -webkit-filter: blur(30px);
+      filter: blur(30px);
+    }
   }
 }

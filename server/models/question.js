@@ -9,7 +9,8 @@ var config = require('../config');
 var Question = module.exports = function (data) {
   _.defaults(this, data, {
     id: uuid.v4(),
-    answers: ['good'],
+    answers: [],
+    answer: null,
     time: config.game.questionTime,
     winners: []
   });
@@ -39,5 +40,5 @@ Question.prototype.valid = function (answer, user) {
  */
 
 Question.prototype.toJSON = function () {
-  return _.pick(this, 'id', 'answer', 'time');
+  return _.pick(this, 'id', 'answer', 'time', 'imageUrl');
 };
