@@ -28,4 +28,12 @@ appControllers.controller('RootCtrl', function(primus) {
 	primus.$on('chat', function (obj) {
 		console.log('chat', obj);
 	});
+
+	primus.$on('game.join', function (obj) {
+		console.log('game.join', obj);
+	});
+
+	primus.$on('game.leave', function (obj) {
+		console.log('game.leave', obj);
+	});
 });
