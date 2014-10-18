@@ -42,7 +42,7 @@ exports.attach = function (server) {
 };
 
 // Expose primus methods.
-['emit'].forEach(function (method) {
+['send'].forEach(function (method) {
   exports[method] = function () {
     primus[method].apply(primus, arguments);
   };
