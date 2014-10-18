@@ -1,13 +1,9 @@
-@import url(http://fonts.googleapis.com/css?family=Handlee);
-@import '/bower_components/bootstrap/dist/css/bootstrap.css';
-@import 'variables';
-
-body{
-	font-family: 'Handlee', Arial;
-	padding: 20px;
-	background: rgb(254, 255, 241);
-}
-
-@import 'controls';
-@import 'display';
-@import 'interactive';
+@import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700,300,200);
+@import "/bower_components/bootstrap/dist/css/bootstrap.css";
+@import "variables";
+@import "layout";
+@import "leaderboard";
+@import "advert";
+@import "chat";
+@import "countdown";
+@import "question";

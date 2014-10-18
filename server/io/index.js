@@ -80,7 +80,8 @@ exports.attach = function (server) {
   function leaveGame(spark, id) {
     games.find(id)
     .then(function (game) {
-      primus.room(id).send('game.leave', {game: game, user: {id: spark.id}});
+      // Remove user from the game.
+      game.removeUser({id: spark.id});
     });
   }
 

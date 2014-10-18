@@ -52,6 +52,23 @@ Game.prototype.addUser = function (user) {
 };
 
 /**
+ * Remove user.
+ *
+ * @param {User} user
+ */
+
+Game.prototype.removeUser = function (user) {
+  // Remove the user if we are in waiting mode.
+  if (this.status === 'waiting') _.remove(this.users, {id: user.id});
+
+  // Log.
+  logger.log('Remove user from game', user, this);
+
+  // Broadcast event.
+  this.broadcast('game.leave', {game: this, user: {id: user.id}});
+};
+
+/**
  * Brodcast event.
  *
  * @param {string} event
