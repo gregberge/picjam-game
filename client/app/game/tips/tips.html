@@ -1,0 +1,18 @@
+<div class="tips">
+<span ng-if="gameStatus == 'starting'">
+	Game will start in <count-down delay="1000" start="countdown"></count-down> seconds
+</span>
+
+<span ng-if="gameStatus == 'starts'">
+	Game is ON ! Type your answer now !
+</span>
+
+<span ng-if="gameStatus == 'questionEnd'">
+	Next image will arrive in <count-down delay="1000" start="countdown"></count-down> seconds<br/>
+	You can chat with your friends now !
+</span>
+
+<span ng-if="gameStatus == 'ended'">
+	Game is finished !
+</span>
+</div>
