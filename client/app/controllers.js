@@ -4,7 +4,28 @@
 
 var appControllers = angular.module('appControllers', []);
 
-appControllers.controller('RootCtrl', ['$scope', '$rootScope'
-	,function($scope, $rootScope){
+appControllers.controller('RootCtrl', function(primus) {
+	primus.id(function (id) {
+		console.log('ID', id);
+	});
 
-	}]);
+	primus.$on('users.create', function (user) {
+		console.log('create', user);
+	});
+
+	primus.$on('users.destroy', function (user) {
+		console.log('destroy', user);
+	});
+
+	primus.$on('users.update', function (user) {
+		console.log('update', user);
+	});
+
+	this.chat = function () {
+		primus.send('chat', {text: 'ok'});
+	};
+
+	primus.$on('chat', function (obj) {
+		console.log('chat', obj);
+	});
+});

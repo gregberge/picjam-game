@@ -7,9 +7,9 @@
 
 #### User
 
-#### < user.join
+#### < user.create
 
-Emitted when a user join the game.
+Emitted when a new user is connected.
 
 ```js
 {
@@ -17,9 +17,9 @@ Emitted when a user join the game.
 }
 ```
 
-#### < user.leave
+#### < user.destroy
 
-Emitted when a user leave the game.
+Emitted when a user is disconnected.
 
 ```js
 {
@@ -72,6 +72,21 @@ Emitted when a new message is received.
 ```
 
 ### Game
+
+#### < game.status
+
+Emitted to give the status of the game.
+
+```js
+{
+  users: [
+    {
+      id: '...',
+      username: '...'
+    }
+  ]
+}
+```
 
 #### < game.start
 

@@ -4,10 +4,11 @@
 
 var PicJam = angular.module('PicJam', [
   'ui.router',
+  'primus',
   'appControllers'
 ]);
 
-PicJam.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+PicJam.config(function($stateProvider, $urlRouterProvider, $locationProvider, primusProvider) {
 
   // For any unmatched url, redirect to homepage
   $urlRouterProvider.otherwise('/');
@@ -18,6 +19,8 @@ PicJam.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('root', {
       url: '/',
       templateUrl: '/app/templates/index.html',
-      controller: 'RootCtrl'
+      controller: 'RootCtrl as root'
     });
+
+  primusProvider.setEndpoint('/');
 });

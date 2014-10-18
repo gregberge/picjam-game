@@ -9,6 +9,9 @@ var app = express();
 // Expose client.
 app.use(express.static(path.join(__dirname, '..', 'client')));
 
+// Expose bower components.
+app.use('/bower_components', express.static(path.join(__dirname, '..', 'bower_components')));
+
 // Create and expose server.
 var server = module.exports = http.createServer(app);
 
