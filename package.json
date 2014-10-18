@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/fhacktory/picjam-game/issues"
   },
-  "homepage": "https://github.com/fhacktory/picjam-game"
+  "homepage": "https://github.com/fhacktory/picjam-game",
+  "dependencies": {
+    "express": "^4.9.8"
+  }
 }
