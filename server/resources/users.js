@@ -1,5 +1,6 @@
 var Promise = require('bluebird');
 var _ = require('lodash');
+var User = require('../models/user');
 var io = require('../io');
 var logger = require('../logger');
 var users = {};
@@ -16,10 +17,9 @@ exports.create = function (user) {
   if (users[user.id]) return Promise.reject(new Error('User already exist'));
 
   // Create user.
-  user = users[user.id] = _.defaults(user, {
-    username: 'user' + (_.size(users) + 1),
-    online: true
-  });
+  user = users[user.id] = new User(_.extend(user, {
+    username: 'user' + (_.size(users) + 1)
+  }));
 
   // Log.
   logger.log('users.create', user);

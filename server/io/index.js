@@ -36,7 +36,7 @@ exports.attach = function (server) {
       spark.on('joinroom', function (id) {
         games.find(id)
         .then(function (game) {
-          primus.room(id).send('game.join', {game: game, user: user});
+          primus.room(id).send('game.join', {game: game, user: user, me: user.id === spark.id});
         });
       });
 
@@ -51,6 +51,13 @@ exports.attach = function (server) {
         // Chat.
         spark.on('chat', function (data) {
           primus.room(game.id).send('chat', _.extend(data, {user: user}));
+        });
+
+        spark.on('question.answer', function (answer) {
+          game.submitAnswer(user, answer)
+          .then(function (valid) {
+            spark.send('question.answer.ack', {valid: valid});
+          });
         });
       });
     });
