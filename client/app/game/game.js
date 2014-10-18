@@ -32,6 +32,9 @@
     // Current question.
     game.currentQuestion = null;
 
+    // Previous question.
+    game.previousQuestion = null;
+
     // Initialize game.
     primus.$on('game.join', function (msg) {
       // Set game id.
@@ -85,6 +88,7 @@
 
     // Set current question.
     primus.$on('question.start', function (msg) {
+      game.previousQuestion = null;
       game.currentQuestion = msg;
 
       game.timer = msg.time - 1000;
@@ -92,6 +96,7 @@
 
     // Remove current question.
     primus.$on('question.end', function (msg) {
+      game.previousQuestion = msg.question;
       game.currentQuestion = null;
       game.timer = msg.time - 1000;
     });
