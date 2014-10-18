@@ -29,6 +29,9 @@
     // Timer.
     game.timer = null;
 
+    // Current question.
+    game.currentQuestion = null;
+
     // Initialize game.
     primus.$on('game.join', function (msg) {
       // Set game id.
@@ -71,7 +74,7 @@
       game.status = 'started';
 
       // Update timer.
-      game.timer = msg.time;
+      game.timer = msg.time - 1000;
     });
 
     // End the game.
@@ -80,66 +83,23 @@
       game.status = 'finished';
     });
 
-    // primus.$on('users.create', function (user) {
-    //   console.log('create', user);
-    // });
-    //
-    // primus.$on('users.destroy', function (user) {
-    //   console.log('destroy', user);
-    // });
-    //
-    // primus.$on('users.update', function (user) {
-    //   console.log('update', user);
-    // });
-    //
-    // primus.$on('chat', function (obj) {
-    //   console.log('chat', obj);
-    //   $scope.messages.push(obj);
-    // });
-    //
-    // primus.$on('game.join', function (obj) {
-    //   console.log('game.join', obj);
-    //   $scope.messages.push({text: obj.user.username + ' joined game', type: 'info'});
-    // });
-    //
-    // primus.$on('game.leave', function (obj) {
-    //   console.log('game.leave', obj);
-    //   var user = _.find(obj.game.users, {id: obj.user.id});
-    //   $scope.messages.push({text: user.username + ' left game', type: 'info'});
-    // });
-    //
-    // primus.$on('game.start', function (obj) {
-    //   console.log('game.start', obj);
-    //   $scope.countdown = obj.time;
-    //   $scope.tip = 'Game will start in '+ $scope.countdown + 'seconds';
-    // });
-    //
-    // primus.$on('game.end', function (obj) {
-    //   console.log('game.end', obj);
-    // });
-    //
-    // primus.$on('question.start', function (obj) {
-    //   console.log('question.start', obj);
-    // });
-    //
-    // primus.$on('question.end', function (obj) {
-    //   console.log('question.end', obj);
-    // });
-    //
-    // primus.$on('question.answer.ack', function (obj) {
-    //   console.log('question.answer.ack', obj);
-    // });
-    //
-    // primus.$on('question.winner', function (obj) {
-    //   console.log('question.winner', obj);
-    // });
-    //
-    // this.submit = function () {
-    //   //primus.send('question.answer', {text: this.answer});
-    //   //this.answer = '';
-    //   primus.send('chat', {text: $scope.text});
-    //   $scope.text = '';
-    // };
+    // Set current question.
+    primus.$on('question.start', function (msg) {
+      game.currentQuestion = msg;
+
+      game.timer = msg.time - 1000;
+    });
+
+    // Remove current question.
+    primus.$on('question.end', function (msg) {
+      game.currentQuestion = null;
+      game.timer = msg.time - 1000;
+    });
+
+    // Set up winner.
+    primus.$on('question.winner', function (obj) {
+      console.log(obj);
+    });
   });
 
 }(window.angular, window._));
