@@ -41,11 +41,8 @@ exports.attach = function (server) {
       });
 
       // Emit a "game.leave" event when a user leave a game room.
-      spark.on('leaveroom', function (id) {
-        games.find(id)
-        .then(function (game) {
-          primus.room(id).send('game.leave', {game: game, user: user});
-        });
+      spark.on('leaveroom', function (room) {
+        leaveGame(spark, room);
       });
 
       // Join game room.
@@ -58,6 +55,27 @@ exports.attach = function (server) {
       });
     });
   });
+
+  // Listen leaveallrooms event (called when a spark is disconnected).
+  primus.on('leaveallrooms', function (rooms, spark) {
+    rooms.forEach(function (room) {
+      leaveGame(spark, room);
+    });
+  });
+
+  /**
+   * Make a spark leave a game.
+   *
+   * @param {Spark} spark
+   * @param {string} id
+   */
+
+  function leaveGame(spark, id) {
+    games.find(id)
+    .then(function (game) {
+      primus.room(id).send('game.leave', {game: game, user: {id: spark.id}});
+    });
+  }
 
   // Disconnection handler.
   primus.on('disconnection', function disconnected(spark) {

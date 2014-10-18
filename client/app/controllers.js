@@ -32,4 +32,8 @@ appControllers.controller('RootCtrl', function(primus) {
 	primus.$on('game.join', function (obj) {
 		console.log('game.join', obj);
 	});
+
+	primus.$on('game.leave', function (obj) {
+		console.log('game.leave', obj);
+	});
 });
