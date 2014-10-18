@@ -1,5 +1,6 @@
 var Primus = require('primus');
 var Emitter = require('primus-emitter');
+var Rooms = require('primus-rooms');
 var _ = require('lodash');
 var primus;
 
@@ -11,26 +12,50 @@ var primus;
 
 exports.attach = function (server) {
   var users = require('../resources/users');
+  var games = require('../resources/games');
 
   // Create and expose primus instance.
   primus = new Primus(server);
 
   // Enable emitter on primus instance.
   primus.use('emitter', Emitter);
+  primus.use('rooms', Rooms);
 
   // Connection handler.
   primus.on('connection', function connected(spark) {
+
     // Create user.
-    users.create({id: spark.id});
+    users.create({id: spark.id})
+    .then(function (user) {
+      // Self-update of the user.
+      spark.on('me.update', function (data) {
+        users.update(user.id, data);
+      });
 
-    // Self-update of the user.
-    spark.on('me.update', function (data) {
-      users.update(spark.id, data);
-    });
+      // Emit a "game.join" event when a user join a game room.
+      spark.on('joinroom', function (id) {
+        games.find(id)
+        .then(function (game) {
+          primus.room(id).send('game.join', {game: game, user: user});
+        });
+      });
 
-    // Chat.
-    spark.on('chat', function (data) {
-      primus.send('chat', _.extend(data, {userId: spark.id}));
+      // Emit a "game.leave" event when a user leave a game room.
+      spark.on('leaveroom', function (id) {
+        games.find(id)
+        .then(function (game) {
+          primus.room(id).send('game.leave', {game: game, user: user});
+        });
+      });
+
+      // Join game room.
+      return games.addUser(user)
+      .then(function (game) {
+        // Chat.
+        spark.on('chat', function (data) {
+          primus.room(game.id).send('chat', _.extend(data, {user: user}));
+        });
+      });
     });
   });
 
@@ -42,8 +67,8 @@ exports.attach = function (server) {
 };
 
 // Expose primus methods.
-['send'].forEach(function (method) {
+['send', 'join', 'room'].forEach(function (method) {
   exports[method] = function () {
-    primus[method].apply(primus, arguments);
+    return primus[method].apply(primus, arguments);
   };
 });

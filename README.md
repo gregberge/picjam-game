@@ -7,26 +7,6 @@
 
 #### User
 
-#### < user.create
-
-Emitted when a new user is connected.
-
-```js
-{
-  id: '...'
-}
-```
-
-#### < user.destroy
-
-Emitted when a user is disconnected.
-
-```js
-{
-  id: '...'
-}
-```
-
 #### < user.update
 
 Emitted when a user is updated.
@@ -66,25 +46,44 @@ Emitted when a new message is received.
 
 ```js
 {
-  userId: '...',
+  user: {...},
   text: '...'
 }
 ```
 
 ### Game
 
-#### < game.status
+#### < game.join
 
-Emitted to give the status of the game.
+Emitted when you or a user join the game.
 
 ```js
 {
-  users: [
-    {
-      id: '...',
-      username: '...'
-    }
-  ]
+  game: {
+    id: '...',
+    users: [{...}, {...}]
+  },
+  user: {
+    id: '...',
+    username: '...'
+  }
+}
+```
+
+#### < game.leave
+
+Emitted when a user leave the game.
+
+```js
+{
+  game: {
+    id: '...',
+    users: [{...}, {...}]
+  },
+  user: {
+    id: '...',
+    username: '...'
+  }
 }
 ```
 

@@ -17,11 +17,9 @@ exports.create = function (user) {
 
   // Create user.
   user = users[user.id] = _.defaults(user, {
-    username: 'user' + (_.size(users) + 1)
+    username: 'user' + (_.size(users) + 1),
+    online: true
   });
-
-  // Notify io.
-  io.send('users.create', user);
 
   // Log.
   logger.log('users.create', user);
@@ -68,11 +66,11 @@ exports.destroy = function (id) {
   // If user doesn't exist, error.
   if (!user) return Promise.reject(new Error('User not found'));
 
+  // Put user offline.
+  user.online = false;
+
   // Remove user.
   _.remove(users, user);
-
-  // Notify io.
-  io.send('users.destroy', user);
 
   // Log.
   logger.log('users.destroy', user);
