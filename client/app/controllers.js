@@ -4,7 +4,7 @@
 
 var appControllers = angular.module('appControllers', []);
 
-appControllers.controller('RootCtrl', ['$scope', '$rootScope', '$state'
-	,function($scope, $rootScope, $state){
+appControllers.controller('RootCtrl', ['$scope', '$rootScope'
+	,function($scope, $rootScope){
 
 	}]);
