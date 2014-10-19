@@ -16,6 +16,8 @@ var Game = module.exports = function (data) {
     id: uuid.v4(),
     users: [],
     status: 'waiting',
+    nbUsers: config.game.nbUsers,
+    nbQuestions: config.game.nbQuestions,
     questions: [],
     scores: {},
     currentQuestion: null
@@ -109,6 +111,7 @@ Game.prototype.startQuestion = function () {
   .then(function (url) {
     // Create question.
     game.currentQuestion = new Question({
+      number: game.questions.length + 1,
       imageUrl: url,
       answers: [keyword],
       answer: keyword
@@ -212,5 +215,5 @@ Game.prototype.submitAnswer = function (user, answer) {
  */
 
 Game.prototype.toJSON = function () {
-  return _.pick(this, 'id', 'users');
+  return _.pick(this, 'id', 'users', 'nbUsers', 'nbQuestions');
 };

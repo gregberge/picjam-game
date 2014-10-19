@@ -2,8 +2,8 @@
 <!-- <h2>Game #{{game.id}}</h2> -->
 <div class="game row" ng-class="[game.status]">
   <div class="col-md-4">
-    <pj-countdown timer="game.timer"></pj-countdown>
-    <pj-question question="game.currentQuestion || game.previousQuestion"></pj-question>
+    <pj-countdown timer="game.timer" ng-show="game.status !== 'waiting'"></pj-countdown>
+    <pj-question question="game.currentQuestion || game.previousQuestion" ng-show="game.status !== 'waiting'"></pj-question>
     <pj-leaderboard users="game.users"></pj-leaderboard>
   </div>
   <div class="col-md-8">
