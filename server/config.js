@@ -1,6 +1,6 @@
 module.exports = {
   game: {
-    nbUsers: 3,
+    nbUsers: 2,
     timeBeforeStart: 8000,
     timeBetweenQuestions: 10000,
     questionTime: 15000,

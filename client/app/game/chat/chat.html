@@ -1,11 +1,25 @@
 <div class="interactive main-chat">
 	<ul class="messages">
-		<li class="{{message.type}}" ng-repeat="message in messages">
-			<span ng-if="message.type != 'info' && !message.me">{{message.user.username}} says: {{message.text}}</span>
-			<span ng-if="message.type != 'info' && message.me && !message.playing">You say: {{message.text}}</span>
-			<span ng-if="message.type != 'info' && message.me && message.playing">Your answer: {{message.text}}</span>
-			<span ng-if="message.type != 'info' && message.me && message.win">You win {{message.points}} points!</span>
-			<span ng-if="message.type != 'info' && !message.me && message.win">{{message.user.username}} has found, he wins {{message.points}}!</span>
+		<li class="message {{message.type}}" ng-repeat="message in messages">
+
+			<svg ng-show="message.type == 'chat' && message.me"  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="40px">
+	    		<polygon transform="translate(0 5) rotate(180 15 15) " points="0,0 0,30 30,15" class="box"></polygon>
+			</svg>
+
+			<svg ng-class="{others: !message.me}" ng-show="message.type == 'chat' && !message.me"  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="40px">
+	    		<polygon transform="translate(0 5) rotate(360 15 15) " points="0,0 0,30 30,15" class="box"></polygon>
+			</svg>
+
+			<div ng-class="{others: !message.me}" class="content">
+				<span ng-if="message.type != 'info' && !message.me && !message.win">{{message.user.username}} says: {{message.text}}</span>
+				<span ng-if="message.type != 'info' && message.me && !message.playing && !message.win">You say: {{message.text}}</span>
+				<span ng-if="message.type != 'info' && message.me && message.playing">Your answer: {{message.text}}</span>
+				<span ng-if="message.type != 'info' && message.me && message.win">You win {{message.points}} points!</span>
+				<span ng-if="message.type != 'info' && !message.me && message.win">{{message.user.username}} has found, he wins {{message.points}} points!</span>
+				<span ng-if="message.type == 'info'">{{message.text}}</span>
+			</div>
+
+
 		</li>
 	</ul>
 	<form ng-submit="chat.submit()">
