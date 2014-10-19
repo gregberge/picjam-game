@@ -58,7 +58,7 @@ h1 {
     padding: 10px;
   }
 
-  &.question, &.pause, &.ended {
+  &.question, &.pause, &.finished {
     > div > pj-countdown {
       position: absolute;
       top: -25px;
@@ -78,7 +78,7 @@ h1 {
     }
   }
 
-  &.pause, &.ended{
+  &.pause, &.finished {
   	> div > pj-countdown {
   		 background: $lightPurple;
   	}

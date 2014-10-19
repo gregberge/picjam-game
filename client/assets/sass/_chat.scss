@@ -32,7 +32,7 @@ pj-chat {
         font-size: 18px;
         line-height: 22px;
         font-weight: bold;
-        text-shadow: 0 0 2px opacify($purple, 0.6);
+        text-shadow: 0 0 2px darken(opacify($purple, 0.8), 30%);
       }
 
       &.chat {
