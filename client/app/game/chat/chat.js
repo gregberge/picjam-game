@@ -39,11 +39,16 @@
         });
 
         primus.$on('question.start', function(obj){
-          var message = _.extend({
+          $scope.placeholder = 'Type your answer here';
+          $scope.messages.push({
             text: 'Question number #' + obj.number,
             type: 'question'
           });
-          $scope.messages.push(message);
+        });
+
+        primus.$on('question.end', function () {
+          $scope.placeholder = 'Type your message here';
+          $scope.messages.push({type: 'interlude'});
         });
 
         primus.$on('question.winner', function(obj){
@@ -63,7 +68,7 @@
 
         this.submit = function () {
           if (!$scope.text) return ;
-          
+
           if($scope.game && $scope.game.me){
            if ($scope.game.currentQuestion){
               primus.send('question.answer', {text: $scope.text});

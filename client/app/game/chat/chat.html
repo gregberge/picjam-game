@@ -20,10 +20,11 @@
 				</span>
 				<span ng-if="message.type === 'info'">{{message.text}}</span>
 				<span ng-if="message.type === 'question'">{{message.text}}</span>
+				<span ng-if="message.type == 'interlude'">**** Interlude : You can chat with your friends ! ****</span>
 			</div>
 		</li>
 	</ul>
 	<form ng-submit="chat.submit()">
-		<input class="form-control main-input" ng-model="text" type="text" placeholder="Type your answer"/>
+		<input class="form-control main-input" ng-model="text" type="text" placeholder="{{placeholder}}"/>
 	</form>
 </div>

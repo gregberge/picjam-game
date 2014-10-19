@@ -27,7 +27,7 @@ pj-chat {
       padding: 5px;
       overflow: hidden;
 
-      &.question {
+      &.question, &.interlude {
         border-bottom: 1px solid white;
         font-size: 18px;
         line-height: 22px;
@@ -93,5 +93,7 @@ pj-chat {
   input.form-control {
     font-size: 18px;
     height: 55px;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
   }
 }
