@@ -1,6 +1,6 @@
 module.exports = {
   game: {
-    nbUsers: 2,
+    nbUsers: 3,
     timeBeforeStart: 8000,
     timeBetweenQuestions: 10000,
     questionTime: 15000,
@@ -8,15 +8,25 @@ module.exports = {
     nbQuestions: 10
   },
   keywords: [
-    'clef',
-    'bouteille',
-    'canard',
-    'piscine',
-    'rose',
-    'lena',
-    'cheveux',
-    'ordinateur',
-    'macbook',
-    'pomme'
+    'enfant',
+    'livre',
+    'ombre',
+    'poche',
+    'tour',
+    'madame',
+    'arme',
+    'armee',
+    'balle',
+    'bouche',
+    'cuisine',
+    'dent',
+    'fenetre',
+    'langue',
+    'maison',
+    'musique',
+    'piece',
+    'table',
+    'tete',
+    'voiture'
   ]
 };
