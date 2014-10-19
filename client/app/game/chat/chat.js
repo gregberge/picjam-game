@@ -37,8 +37,11 @@
         });
 
         primus.$on('game.end', function () {
-            $scope.messages.push({text: 'The game is finished!', type: 'info'});
-          _.each($scope.game.users, function (user, index) {
+          $scope.messages.push({text: 'The game is finished!', type: 'info'});
+          var sortedUsers = _.sortBy($scope.game.users, function (user) {
+            return -user.score;
+          });
+          _.each(sortedUsers, function (user, index) {
             if (index > 2) return;
             $scope.messages.push({text: user.username + ' with ' + user.score + ' points!', rank: index + 1, type: 'rank'});
           });
