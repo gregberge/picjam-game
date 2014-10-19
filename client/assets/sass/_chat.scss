@@ -37,14 +37,46 @@ pj-chat {
 
       &.chat {
         color: white;
+        background: darken($purple, 5%);
+        margin-right: 10px;
+        position: relative;
+        overflow: visible;
 
         .prep {
           color: $pink;
         }
+
+        &:before {
+          content: ' ';
+          position: absolute;
+          width: 0;
+          height: 0;
+          right: -8px;
+          top: 5px;
+          border: 8px solid;
+          border-color: darken($purple, 5%) transparent transparent darken($purple, 5%);
+          transform: rotate(-225deg);
+        }
       }
 
       &.chat-me, &.answer {
+        background: darken($purple, 5%);
         color: white;
+        margin-left: 8px;
+        position: relative;
+        overflow: visible;
+
+        &:before {
+          content: ' ';
+        	position: absolute;
+        	width: 0;
+        	height: 0;
+          left: -8px;
+          top: 5px;
+        	border: 8px solid;
+        	border-color: darken($purple, 5%) transparent transparent darken($purple, 5%);
+          transform: rotate(-45deg);
+        }
 
         .prep {
           color: $orange;

@@ -1,6 +1,7 @@
 <div class="interactive main-chat">
 	<ul class="messages">
 		<li class="message" ng-class="[message.type]" ng-repeat="message in messages">
+
 			<div class="content">
 				<span ng-if="message.type === 'chat'">
 					<span class="prep">{{message.user.username}}:</span> {{message.text}}
