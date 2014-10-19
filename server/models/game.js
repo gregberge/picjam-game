@@ -31,7 +31,7 @@ var Game = module.exports = function (data) {
  */
 
 Game.prototype.isAvailable = function () {
-  return this.users.length < config.game.nbUsers;
+  return this.status === 'waiting' && this.users.length < config.game.nbUsers;
 };
 
 /**
