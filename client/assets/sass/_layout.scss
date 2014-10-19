@@ -2,14 +2,45 @@
 //
 
 body{
-  font-family: 'Yanone Kaffeesatz', sans-serif;
+  font-family: 'Handlee', sans-serif;
   background: #252651;
   color: white;
 }
 
-pj-countdown {
-  position: absolute;
-  top: -25px;
-  right: 10px;
-  z-index: 2;
+h1 {
+  font-family: 'Pacifico', sans-serif;
+}
+
+.game {
+
+  > div > pj-countdown {
+    position: absolute;
+    top: 30%;
+    width: 100%;
+    text-align: center;
+    font-size: 80px;
+    z-index: 2;
+    display: block;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+    padding: 10px;
+  }
+
+  &.question {
+    > div > pj-countdown {
+      position: absolute;
+      top: -25px;
+      right: 10px;
+      z-index: 2;
+      display: block;
+      border-radius: 50%;
+      font-size: 30px;
+      line-height: 25px;
+      text-align: center;
+      padding: 10px;
+      background: $yellow;
+      width: 50px;
+      height: 50px;
+      text-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+    }
+  }
 }

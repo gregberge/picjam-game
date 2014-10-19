@@ -3,4 +3,28 @@
 
 pj-chat {
   display: block;
+  height: 400px;
+  background: $purple;
+  font-size: 16px;
+  position: relative;
+
+  .interactive {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+
+  .messages {
+    list-style-type: none;
+    max-height: 360px;
+    overflow-y: scroll;
+    margin: 0;
+    padding: 0 10px;
+    color: $yellow;
+
+    li {
+      margin: 0;
+      padding: 2px;
+    }
+  }
 }

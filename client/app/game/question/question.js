@@ -18,7 +18,7 @@
         var img = element.find('img');
 
         scope.$watch('question', function (question) {
-          if (!question) {
+          if (!question || question.answer) {
             img.removeClass('blur');
             img.css('transition', 'none');
             return ;
