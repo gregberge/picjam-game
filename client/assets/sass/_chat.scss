@@ -16,16 +16,23 @@ pj-chat {
 
   .messages {
     list-style-type: none;
-    max-height: 340px;
+    max-height: 330px;
     overflow-y: scroll;
     margin-bottom: 5px;
     padding: 0 10px;
     color: $yellow;
 
     li {
-      margin: 0;
-      padding: 10px;
+      margin: 5px 0;
+      padding: 5px;
       overflow: hidden;
+
+      &.question {
+        border-bottom: 1px solid white;
+        font-size: 18px;
+        font-weight: bold;
+        text-shadow: 0 0 2px opacify($purple, 0.6);
+      }
     }
 
     .chat{

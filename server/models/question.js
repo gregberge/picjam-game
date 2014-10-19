@@ -40,5 +40,5 @@ Question.prototype.valid = function (answer, user) {
  */
 
 Question.prototype.toJSON = function () {
-  return _.pick(this, 'id', 'answer', 'time', 'imageUrl');
+  return _.pick(this, 'id', 'answer', 'time', 'imageUrl', 'number');
 };

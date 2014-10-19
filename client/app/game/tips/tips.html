@@ -1,6 +1,6 @@
 <div class="tips">
 	<span ng-if="game.status === 'waiting'">
-		{{game.users.length}} users in the game, we are waiting for users!
+		{{game.users.length}} users in the game, waiting {{game.nbUsers-game.users.length}} users left.
 	</span>
 
 	<span ng-if="game.status === 'starting'">

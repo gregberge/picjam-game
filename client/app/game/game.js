@@ -43,6 +43,11 @@
       // Set game id.
       game.id = msg.game.id;
 
+      console.log(msg);
+      
+      // Set nb user.
+      game.nbUsers = msg.game.nbUsers;
+
       // Initialize users.
       game.users = game.users || _.map(msg.game.users, function (user) {
         return new User(user);

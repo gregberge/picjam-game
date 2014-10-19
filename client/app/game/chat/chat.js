@@ -34,6 +34,11 @@
           $scope.messages.push(message);
         });
 
+        primus.$on('question.start', function(obj){
+          var message = _.extend({text: 'Question number #' + obj.number, type: 'info', question: true});
+          $scope.messages.push(message);
+        });
+
         primus.$on('question.answer', function(obj){
           var message = _.extend({me: obj.user.id === $scope.game.me.id, playing: true}, obj);
           $scope.messages.push(message);
