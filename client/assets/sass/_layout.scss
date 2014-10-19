@@ -44,6 +44,15 @@ h1 {
   }
 }
 
+.play-again {
+  padding-top: 30px;
+  text-align: center;
+
+  .btn {
+    font-size: 30px;
+  }
+}
+
 .game {
 
   > div > pj-countdown {

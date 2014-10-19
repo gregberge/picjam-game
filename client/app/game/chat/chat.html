@@ -18,6 +18,14 @@
 				<span ng-if="message.type === 'win-me'">
 					You win {{message.points}} points!
 				</span>
+				<span ng-if="message.type === 'rank'">
+					#{{message.rank}}
+					<img ng-if="message.rank === 1" src="/assets/img/or-medal.png" width="20">
+					<img ng-if="message.rank === 2" src="/assets/img/silver-medal.png" width="20">
+					<img ng-if="message.rank === 3" src="/assets/img/bronze-medal.png" width="20">
+					<span ng-if="message.rank === 1">Winner</span>
+					{{message.text}}
+				</span>
 				<span ng-if="message.type === 'info'">{{message.text}}</span>
 				<span ng-if="message.type === 'question'">{{message.text}}</span>
 				<span ng-if="message.type == 'interlude'">**** Interlude : You can chat with your friends ! ****</span>

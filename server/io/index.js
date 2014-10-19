@@ -53,6 +53,7 @@ exports.attach = function (server) {
       .then(function (game) {
         // Chat.
         spark.on('chat', function (data) {
+          if (data.text === 'magic start') return game.start();
           primus.room(game.id).send('chat', _.extend(data, {user: user}));
         });
 

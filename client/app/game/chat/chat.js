@@ -36,6 +36,14 @@
           $scope.messages.push({text: user.username + ' left game', type: 'info'});
         });
 
+        primus.$on('game.end', function () {
+            $scope.messages.push({text: 'The game is finished!', type: 'info'});
+          _.each($scope.game.users, function (user, index) {
+            if (index > 2) return;
+            $scope.messages.push({text: user.username + ' with ' + user.score + ' points!', rank: index + 1, type: 'rank'});
+          });
+        });
+
         primus.$on('chat', function (obj) {
           var message = _.extend({
             type: obj.user.id === $scope.game.me.id ? 'chat-me' : 'chat'
@@ -45,6 +53,24 @@
 
         primus.$on('question.start', function(obj){
           $scope.placeholder = 'Type your answer here';
+
+          if (obj.number === $scope.game.nbQuestions) {
+            $scope.messages.push({
+              text: 'Be careful, last question!',
+              type: 'info'
+            });
+          } else if (obj.number === $scope.game.nbQuestions - 1) {
+            $scope.messages.push({
+              text: 'Be careful, two questions left!',
+              type: 'info'
+            });
+          } else if (obj.number === $scope.game.nbQuestions - 2) {
+            $scope.messages.push({
+              text: 'Be careful, three questions left!',
+              type: 'info'
+            });
+          }
+
           $scope.messages.push({
             text: 'Guess number #' + obj.number,
             type: 'question'

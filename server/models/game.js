@@ -87,6 +87,9 @@ Game.prototype.broadcast = function (event, message) {
  */
 
 Game.prototype.start = function () {
+  // If game is already started, do nothing.
+  if (this.status === 'started') return ;
+
   // Set the status to "started".
   this.status = 'started';
 
@@ -191,18 +194,20 @@ Game.prototype.submitAnswer = function (user, answer) {
     // Compute points.
     var points = config.game.points[this.currentQuestion.winners.length - 1];
 
-    // Brocast "question.winner".
-    this.broadcast('question.winner', {
-      question: this.currentQuestion,
-      user: user,
-      rank: this.currentQuestion.winners.length,
-      points: points
-    });
+    if (points) {
+      // Brocast "question.winner".
+      this.broadcast('question.winner', {
+        question: this.currentQuestion,
+        user: user,
+        rank: this.currentQuestion.winners.length,
+        points: points
+      });
 
-    // Update score.
-    this.scores[user.id] += points;
+      // Update score.
+      this.scores[user.id] += points;
 
-    logger.log('Send winner "%s", with points %d', user.id, points);
+      logger.log('Send winner "%s", with points %d', user.id, points);
+    }
   }
 
   return Promise.resolve(valid);

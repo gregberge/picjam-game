@@ -38,13 +38,14 @@
     // Current question.
     game.currentQuestion = null;
 
+    // Restart game.
+    game.restart = function () {
+      $window.location.reload();
+    };
+
     // Initialize game.
     primus.$on('game.join', function (msg) {
-      // Set game id.
-      game.id = msg.game.id;
-
-      // Set nb user.
-      game.nbUsers = msg.game.nbUsers;
+      _.extend(game, _.pick(msg.game, 'id', 'nbUsers', 'nbQuestions'));
 
       // Initialize users.
       game.users = game.users || _.map(msg.game.users, function (user) {
