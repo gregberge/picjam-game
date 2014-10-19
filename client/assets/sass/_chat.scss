@@ -18,7 +18,7 @@ pj-chat {
     list-style-type: none;
     max-height: 360px;
     overflow-y: scroll;
-    margin: 0;
+    margin-bottom: 5px;
     padding: 0 10px;
     color: $yellow;
 
@@ -26,5 +26,9 @@ pj-chat {
       margin: 0;
       padding: 2px;
     }
+  }
+
+  input.form-control {
+    font-size: 18px;
   }
 }

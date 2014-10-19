@@ -5,6 +5,7 @@ var config = require('../config');
 var io = require('../io');
 var Question = require('./question');
 var logger = require('../logger');
+var flickr = require('../services/flickr');
 
 /**
  * Create a new game.
@@ -101,23 +102,29 @@ Game.prototype.start = function () {
  */
 
 Game.prototype.startQuestion = function () {
-  // Create question.
-  this.currentQuestion = new Question({
-    imageUrl: '/assets/img/yoda.jpg',
-    answers: ['yoda'],
-    answer: 'Yoda'
+  var game = this;
+  var keyword = _.sample(config.keywords);
+
+  flickr.search(keyword)
+  .then(function (url) {
+    // Create question.
+    game.currentQuestion = new Question({
+      imageUrl: url,
+      answers: [keyword],
+      answer: keyword
+    });
+
+    // Add questions to the game.
+    game.questions.push(game.currentQuestion);
+
+    // Broadcast "question.start".
+    game.broadcast('question.start', _.omit(game.currentQuestion.toJSON(), 'answer'));
+
+    logger.log('Start question', game.currentQuestion.toJSON());
+
+    // Plan the end of question.
+    setTimeout(_.bind(game.endQuestion, game), config.game.questionTime);
   });
-
-  // Add questions to the game.
-  this.questions.push(this.currentQuestion);
-
-  // Broadcast "question.start".
-  this.broadcast('question.start', _.omit(this.currentQuestion.toJSON(), 'answer'));
-
-  logger.log('Start question', this.currentQuestion.toJSON());
-
-  // Plan the end of question.
-  setTimeout(_.bind(this.endQuestion, this), config.game.questionTime);
 };
 
 /**

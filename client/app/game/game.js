@@ -11,8 +11,11 @@
     'picjam.game.chat',
     'picjam.game.question'
   ])
-  .controller('GameCtrl', function (primus, User) {
+  .controller('GameCtrl', function (primus, User, $window, $state) {
     var game = this;
+
+    // Return to login if there is no username.
+    if (!$window.localStorage.username) return $state.go('login');
 
     // Id.
     game.id = null;
@@ -51,6 +54,9 @@
       if (msg.me) {
         game.me = user;
         user.me = true;
+
+        // Update username.
+        primus.send('me.update', {username: $window.localStorage.username});
       }
 
       // Add user if it doesn't already exist.
@@ -123,6 +129,15 @@
 
       // Add points.
       user.score += obj.points;
+    });
+
+    // Update user.
+    primus.$on('users.update', function (msg) {
+      var user = _.find(game.users, {id: msg.id});
+
+      if (!user) return ;
+
+      _.extend(user, msg);
     });
   });
 

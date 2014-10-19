@@ -31,6 +31,7 @@
     "primus": "^2.4.9",
     "primus-emitter": "^3.0.3",
     "primus-rooms": "^3.1.0",
+    "request": "^2.45.0",
     "ws": "^0.4.32"
   },
   "devDependencies": {

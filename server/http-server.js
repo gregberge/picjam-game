@@ -6,6 +6,13 @@ var logger = require('./logger');
 // Create express application.
 var app = express();
 
+app.get('/', serveIndex);
+app.get('/game', serveIndex);
+
+function serveIndex(req, res) {
+  res.sendFile(path.join(__dirname, '..', 'client', 'index.html'));
+}
+
 // Expose client.
 app.use(express.static(path.join(__dirname, '..', 'client')));
 

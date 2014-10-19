@@ -1,10 +1,11 @@
 <div class="interactive main-chat">
 	<ul class="messages">
 		<li class="{{message.type}}" ng-repeat="message in messages">
-			<span ng-if="message.type != 'info' && !message.me">{{message.user.username}} says: </span>
-			<span ng-if="message.type != 'info' && message.me && !message.playing">You say: </span>
-			<span ng-if="message.type != 'info' && message.me && message.playing">Your answer: </span>
-			{{message.text}}
+			<span ng-if="message.type != 'info' && !message.me">{{message.user.username}} says: {{message.text}}</span>
+			<span ng-if="message.type != 'info' && message.me && !message.playing">You say: {{message.text}}</span>
+			<span ng-if="message.type != 'info' && message.me && message.playing">Your answer: {{message.text}}</span>
+			<span ng-if="message.type != 'info' && message.me && message.win">You win {{message.points}} points!</span>
+			<span ng-if="message.type != 'info' && !message.me && message.win">{{message.user.username}} has found, he wins {{message.points}}!</span>
 		</li>
 	</ul>
 	<form ng-submit="chat.submit()">

@@ -7,6 +7,7 @@
   angular.module('picjam', [
     'ui.router',
     'primus',
+    'picjam.login',
     'picjam.game',
     'picjam.user'
   ])
@@ -19,8 +20,13 @@
 
     // Define routes.
     $stateProvider
-      .state('game', {
+      .state('login', {
         url: '/',
+        templateUrl: '/app/login/login.html',
+        controller: 'LoginCtrl as login'
+      })
+      .state('game', {
+        url: '/game',
         templateUrl: '/app/game/game.html',
         controller: 'GameCtrl as game'
       });
