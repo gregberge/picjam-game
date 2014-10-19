@@ -29,7 +29,7 @@
 
           // Wait render.
           $timeout(function () {
-            img.css('transition', 'all ' + question.time + 'ms linear');
+            img.css('transition', 'all ' + question.time + 'ms ease-out');
             img.removeClass('blur');
           });
         });
