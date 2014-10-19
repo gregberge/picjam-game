@@ -13,7 +13,8 @@ var Question = module.exports = function (data) {
     answers: [],
     answer: null,
     time: config.game.questionTime,
-    winners: []
+    winners: [],
+    type: null
   });
 };
 
@@ -46,5 +47,5 @@ Question.prototype.valid = function (answer, user) {
  */
 
 Question.prototype.toJSON = function () {
-  return _.pick(this, 'id', 'answer', 'time', 'imageUrl', 'number');
+  return _.pick(this, 'id', 'answer', 'time', 'imageUrl', 'number', 'type');
 };

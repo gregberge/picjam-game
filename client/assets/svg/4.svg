@@ -1,0 +1,7 @@
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" height="30" width="200">
+  <a xlink:href="http://www.w3schools.com/svg/" target="_blank">
+    <text x="0" y="15" fill="red">
+      4
+    </text>
+  </a>
+</svg>

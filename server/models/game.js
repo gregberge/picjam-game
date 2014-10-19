@@ -108,6 +108,28 @@ Game.prototype.start = function () {
 
 Game.prototype.startQuestion = function () {
   var game = this;
+
+  if (game.questions.length === 0) {
+    game.currentQuestion = new Question({
+      number: game.questions.length + 1,
+      answers: ['alladin', 'aladin'],
+      answer: 'aladdin',
+      type: 'svg'
+    });
+
+    game.questions.push(game.currentQuestion);
+
+    // Broadcast "question.start".
+    game.broadcast('question.start', _.omit(game.currentQuestion.toJSON(), 'answer'));
+
+    logger.log('Start question', game.currentQuestion.toJSON());
+
+    // Plan the end of question.
+    setTimeout(_.bind(game.endQuestion, game), config.game.questionTime);
+
+    return ;
+  }
+
   var keywords = _.sample(config.questions);
 
   flickr.search(keywords.join(','))
@@ -117,7 +139,8 @@ Game.prototype.startQuestion = function () {
       number: game.questions.length + 1,
       imageUrl: url,
       answers: keywords,
-      answer: keywords[0]
+      answer: keywords[0],
+      type: 'blur'
     });
 
     // Add questions to the game.
