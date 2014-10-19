@@ -1,15 +1,21 @@
-(function (angular) { 'use strict';
+(function (angular, _) { 'use strict';
 
   /**
    * Chat directive.
    */
 
   angular.module('picjam.game.chat', ['primus'])
-  .directive('pjChat', function (primus) {
+  .directive('pjChat', function () {
     return {
       restrict: 'E',
       scope: true,
       templateUrl: '/app/game/chat/chat.html',
+      link: function (scope, element) {
+        scope.$watchCollection('messages', function () {
+          var messages = element.find('ul')[0];
+          messages.scrollTop = messages.scrollHeight;
+        });
+      },
       controllerAs: 'chat',
       controller: function ($scope, primus) {
         $scope.messages = [];
@@ -62,4 +68,4 @@
     };
   });
 
-}(window.angular));
+}(window.angular, window._));
