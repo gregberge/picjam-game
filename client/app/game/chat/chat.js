@@ -46,7 +46,7 @@
         primus.$on('question.start', function(obj){
           $scope.placeholder = 'Type your answer here';
           $scope.messages.push({
-            text: 'Question number #' + obj.number,
+            text: 'Guess number #' + obj.number,
             type: 'question'
           });
         });
