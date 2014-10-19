@@ -9,7 +9,7 @@ exports.search = function (query) {
       url: 'https://api.flickr.com/services/rest/',
       qs: {
         method: 'flickr.photos.search',
-        api_key: '8a79290acd0658ba03e4eb0c85f54c0f',
+        api_key: 'a610a183f07ca46f419297ac441ea347',
         tags: query,
         tag_mode: 'all',
         format: 'json',
