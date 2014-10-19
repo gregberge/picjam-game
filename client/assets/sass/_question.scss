@@ -14,6 +14,12 @@ pj-question {
       -webkit-filter: blur(30px);
       filter: blur(30px);
     }
+
+    &.pause{
+      filter: grayscale(100%);
+      -webkit-filter: grayscale(100%);
+      opacity: 0.4;
+    }
   }
 
   .answer {
