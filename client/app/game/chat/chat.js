@@ -34,6 +34,14 @@
           $scope.messages.push(message);
         });
 
+        primus.$on('question.end', function (obj) {
+          $scope.placeholder = 'Type your message here';
+        });
+
+        primus.$on('question.start', function (obj) {
+          $scope.placeholder = 'Type your answer here';
+        });
+
         primus.$on('question.answer', function(obj){
           var message = _.extend({me: obj.user.id === $scope.game.me.id, playing: true}, obj);
           $scope.messages.push(message);
@@ -50,6 +58,7 @@
         });
 
         this.submit = function () {
+
           if($scope.game && $scope.game.me){
            if($scope.game.currentQuestion){
               primus.send('question.answer', {text: $scope.text});

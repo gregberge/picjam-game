@@ -54,5 +54,7 @@ pj-chat {
   input.form-control {
     font-size: 18px;
     height: 55px;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
   }
 }
