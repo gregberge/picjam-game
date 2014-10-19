@@ -1,2 +1,2 @@
 <div class="answer" ng-class="{visible: question.answer}">The answer was:<br>{{question.answer}}</div>
-<img ng-src="{{question.imageUrl || '/assets/img/empty.png'}}">
+<img ng-class="{pause: game.status == 'pause'}" ng-src="{{question.imageUrl || '/assets/img/empty.png'}}">

@@ -10,7 +10,8 @@
       restrict: 'E',
       scope: {
         question: '=',
-        timer: '='
+        timer: '=',
+        game: '='
       },
       templateUrl: '/app/game/question/question.html',
       controllerAs: 'question',

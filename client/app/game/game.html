@@ -3,7 +3,7 @@
 <div class="game row" ng-class="[game.status]">
   <div class="col-md-4">
     <pj-countdown timer="game.timer" ng-show="game.status !== 'waiting'"></pj-countdown>
-    <pj-question question="game.currentQuestion || game.previousQuestion" ng-show="game.status !== 'waiting'"></pj-question>
+    <pj-question game="game" question="game.currentQuestion || game.previousQuestion" ng-show="game.status !== 'waiting'"></pj-question>
     <div class="rules" ng-show="game.status == 'waiting'">
 	You are still waiting for other players to join the game.
 		<br/><br/>

@@ -68,6 +68,12 @@ h1 {
     }
   }
 
+  &.pause, &.ended{
+  	> div > pj-countdown {
+  		 background: $lightPurple;
+  	}
+  }
+
   .rules{
 	font-size: 24px;
 	background: rgba(255, 255, 255, 0.2);
