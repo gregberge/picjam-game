@@ -20,6 +20,7 @@
       },
       controllerAs: 'chat',
       controller: function ($scope, primus) {
+        // Messages.
         $scope.messages = [];
 
         if($scope.game.status === 'waiting'){

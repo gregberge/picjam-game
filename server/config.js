@@ -17,6 +17,7 @@ module.exports = {
     ['tortue', 'animal'],
     ['jackson', 'michael', 'singer'],
     ['avion', 'plane', 'sky'],
-    ['coca', 'cola', 'drink', 'soda']
+    ['coca', 'cola', 'drink', 'soda'],
+    ['yoda', 'jedi']
   ]
 };
