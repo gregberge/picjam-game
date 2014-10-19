@@ -36,7 +36,8 @@ exports.attach = function (server) {
       spark.on('joinroom', function (id) {
         games.find(id)
         .then(function (game) {
-          primus.room(id).send('game.join', {game: game, user: user, me: user.id === spark.id});
+          spark.send('game.join', {game: game, user: user, me: true});
+          primus.room(id).send('game.join', {game: game, user: user, me: false});
         });
       });
 
