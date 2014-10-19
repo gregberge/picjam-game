@@ -22,6 +22,10 @@
       controller: function ($scope, primus) {
         $scope.messages = [];
 
+        if($scope.game.status === 'waiting'){
+          $scope.placeholder = 'When the game starts, type your answer here';
+        }
+
         primus.$on('game.join', function (obj) {
           $scope.messages.push({text: obj.user.username + ' joined game', type: 'info'});
         });

@@ -4,6 +4,14 @@
   <div class="col-md-4">
     <pj-countdown timer="game.timer" ng-show="game.status !== 'waiting'"></pj-countdown>
     <pj-question question="game.currentQuestion || game.previousQuestion" ng-show="game.status !== 'waiting'"></pj-question>
+    <div class="rules" ng-show="game.status == 'waiting'">
+	You are still waiting for other players to join the game.
+		<br/><br/>
+		When PicJam starts, guess what the image here will represent and type its name in the chatroom.
+		<br/><br/>
+		Have fun !
+		<br/><br/>
+    </div>
     <pj-leaderboard users="game.users"></pj-leaderboard>
   </div>
   <div class="col-md-8">
