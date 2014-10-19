@@ -1,11 +1,11 @@
 module.exports = {
   game: {
-    nbUsers: 2,
+    nbUsers: 8,
     timeBeforeStart: 11000,
     timeBetweenQuestions: 7001,
     questionTime: 16000,
     points: [3, 2, 1],
-    nbQuestions: 5
+    nbQuestions: 3
   },
   questions: [
     ['fleur', 'flower'],
