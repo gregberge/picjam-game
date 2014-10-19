@@ -8,11 +8,12 @@ module.exports = {
     nbQuestions: 10
   },
   questions: [
-    ['fleur', 'flower', 'plante'],
-    ['elephant', 'animal'],
-    ['chaussure', 'pied', 'sandale'],
+    ['fleur', 'flower'],
+    ['dauphin', 'dolphin'],
+    ['requin', 'mer'],
+    ['chaussure', 'pied'],
     ['lion', 'animal', 'fauve'],
-    ['chat', 'animal', 'griffe'],
+    ['chat', 'animal'],
     ['tortue', 'animal'],
     ['jackson', 'michael', 'singer'],
     ['avion', 'plane', 'sky'],
