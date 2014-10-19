@@ -11,7 +11,7 @@ pj-leaderboard {
       display: inline-block;
       padding: 0 10px;
       background: $yellow;
-      color: lighten($purple, 20%);
+      color: $purple;
     }
 
     .username {
