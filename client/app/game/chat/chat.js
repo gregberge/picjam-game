@@ -30,7 +30,7 @@
         });
 
         primus.$on('chat', function (obj) {
-          var message = _.extend({me: obj.user.id === $scope.game.me.id, playing: false}, obj);
+          var message = _.extend({me: obj.user.id === $scope.game.me.id, playing: false, type: 'chat'}, obj);
           $scope.messages.push(message);
         });
 
@@ -46,14 +46,14 @@
 
         primus.$on('question.answer.ack', function(obj){
           var text = obj.valid ? 'Correct ! Bazinga !!!' : 'Nope, try again !';
-          $scope.messages.push({text: text, type: 'info'});
+          $scope.messages.push({text: text, type: 'info', playing: false});
         });
 
         this.submit = function () {
           if($scope.game && $scope.game.me){
            if($scope.game.currentQuestion){
               primus.send('question.answer', {text: $scope.text});
-              var message = _.extend({me: $scope.game.me.me, playing: true, text: $scope.text});
+              var message = _.extend({me: true, playing: true, text: $scope.text, type: 'chat'});
               $scope.messages.push(message);
              }else{
               primus.send('chat', {text: $scope.text});

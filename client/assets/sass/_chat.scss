@@ -24,11 +24,35 @@ pj-chat {
 
     li {
       margin: 0;
-      padding: 2px;
+      padding: 10px;
+      overflow: hidden;
+    }
+
+    .chat{
+
+    	svg{
+    		float: left;
+    	}
+
+   		polygon{
+   			fill: darken($purple, 5%);
+   		}
+
+   		.content{
+   			float: left;
+   			background: darken($purple, 5%);
+   			padding: 10px;
+   			width: 92%;
+   		}
+
+   		.others{
+   			float: right;
+   		}
     }
   }
 
   input.form-control {
     font-size: 18px;
+    height: 55px;
   }
 }
