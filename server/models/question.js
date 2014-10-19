@@ -1,6 +1,7 @@
 var _ = require('lodash');
 var uuid = require('node-uuid');
 var config = require('../config');
+var removeDiacritics = require('diacritics').remove;
 
 /**
  * Create a new question.
@@ -24,7 +25,12 @@ var Question = module.exports = function (data) {
  */
 
 Question.prototype.valid = function (answer, user) {
-  var valid = _.contains(this.answers, answer.text);
+  var valid = _.contains(this.answers, cleanStr(answer.text)) ||
+    _.contains(this.answers, cleanStr(answer.text + 's'));
+
+  function cleanStr(str) {
+    return removeDiacritics(str).toLowerCase();
+  }
 
   if (valid && !_.find(this.winners, user)) {
     this.winners.push(user);

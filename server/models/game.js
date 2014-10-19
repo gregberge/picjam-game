@@ -105,16 +105,16 @@ Game.prototype.start = function () {
 
 Game.prototype.startQuestion = function () {
   var game = this;
-  var keyword = _.sample(config.keywords);
+  var keywords = _.sample(config.questions);
 
-  flickr.search(keyword)
+  flickr.search(keywords.join(','))
   .then(function (url) {
     // Create question.
     game.currentQuestion = new Question({
       number: game.questions.length + 1,
       imageUrl: url,
-      answers: [keyword],
-      answer: keyword
+      answers: keywords,
+      answer: keywords[0]
     });
 
     // Add questions to the game.

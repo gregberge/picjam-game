@@ -11,6 +11,7 @@ exports.search = function (query) {
         method: 'flickr.photos.search',
         api_key: '8a79290acd0658ba03e4eb0c85f54c0f',
         tags: query,
+        tag_mode: 'all',
         format: 'json',
         nojsoncallback: 1,
         content_type: 1,
